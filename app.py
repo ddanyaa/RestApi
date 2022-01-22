@@ -5,6 +5,7 @@ from flask import Flask, request, jsonify, make_response, send_file
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
+from containers import ApplicationContainer
 
 
 app = Flask(__name__)
@@ -12,6 +13,7 @@ app.config['SECRET_KEY'] = 'do1olfi1bk2hs3scras4dkdaey'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///task.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 database = SQLAlchemy(app)
+container = ApplicationContainer()
 
 
 class Users(database.Model):
@@ -196,6 +198,12 @@ def delete_file(current_user, file_name):
     database.session.delete(file)
     database.session.commit()
     return jsonify({'message': 'file deleted successfully'})
+
+
+@app.route('/health')
+def health():
+    """Метод health"""
+    return {'APP_ENV': container.service.get_env()}
 
 
 if __name__ == '__main__':
