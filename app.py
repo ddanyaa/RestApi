@@ -207,5 +207,10 @@ def health():
     return {'APP_ENV': container.service.get_env()}
 
 
+@app.route('/notification')
+def notification():
+    return {'notification': 'С Новым годом!'}
+
+
 if __name__ == '__main__':
     app.run()
