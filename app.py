@@ -6,11 +6,12 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
 from containers import ApplicationContainer
+from config import Config
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'do1olfi1bk2hs3scras4dkdaey'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///task.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///task_{Config.env}.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 database = SQLAlchemy(app)
 container = ApplicationContainer()
