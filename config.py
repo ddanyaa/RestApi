@@ -1,2 +1,2 @@
 class Config:
-    env = "dev"
+    env = "prod"
