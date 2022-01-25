@@ -1,0 +1,10 @@
+#!/usr/bin/python
+import re
+import sys
+
+reg = r"\[[0-9]+\][a-zA-Z]"
+commit = open(sys.argv[1], "r").read()
+if not re.match(reg, commit):
+    print("Incorrect commit!")
+    print("Example of a correct commit: [2]text")
+    sys.exit(-1)
