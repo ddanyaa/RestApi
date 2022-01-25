@@ -209,7 +209,7 @@ def health():
 
 @app.route('/notification')
 def notification():
-    return {'notification': 'С новым счастьем!'}
+    return {'notification': 'С новым счастьем'}
 
 
 if __name__ == '__main__':
